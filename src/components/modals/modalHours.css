@@ -1,0 +1,171 @@
+/**.modalBackgroud {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(199, 196, 196);
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer{
+    width: 500px;
+    height: 500px;
+    border-radius: 12px;
+    background-color: rgb(201, 201, 201);
+    box-shadow: rbga(0, 0, 0, 0.35) 0px, 5px, 15px;
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+}
+
+.modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 10px;
+
+}
+
+.titleclosebtn {
+     display: flex;
+     justify-content: flex-end;
+}
+
+.titleclosebtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+}
+
+.modalContainer .body {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+
+}
+**/
+.custom-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Styles for the active button */
+  .active-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #21618c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .custom-button.hover {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #21618c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .modal-body{
+    align-items: center;
+    align-content: center;
+  }
+
+.pagination{
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+.list-days {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list-days li{
+  display: inline;
+  margin-right: 10px;
+}
+
+.btn-days {
+  height: 40px;
+  width: 75px;
+  color: #fff;
+  background-color: #3498db;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.list-times-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizar horizontalmente */
+  justify-content: center; /* Centralizar verticalmente */
+  max-height: 300px; /* Altura máxima da lista (ajuste conforme necessário) */
+  margin: 20px; /* Margem para separar dos outros componentes */
+}
+
+.list-times {
+  list-style: none;
+  padding-left: 10px;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colunas com largura igual */
+  gap: 20px; /* Espaçamento entre colunas */
+}
+
+.list-times li {
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%; /* Para ocupar a altura do item pai */ /* Espaçamento entre os itens da lista */
+}
+
+.pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px; /* Adjust margin as needed */
+}
+
+.paginationBttns {
+  padding: 0px;
+}
+
+.list-days {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centralizar horizontalmente */
+  justify-content: center; /* Centralizar verticalmente */
+  list-style: none;
+  padding: 0;
+}
+
+ul.list-days li {
+  margin: 5px;
+}
+.days {
+  display: flex;
+  align-items: center; /* Centralizar verticalmente */
+  list-style: none;
+  padding: 0;
+}
+
+ul.days li {
+margin: 0 5px; /* Espaçamento entre os itens */
+}
+
