@@ -7,12 +7,12 @@ const config = {
 };
 
 export function baseUrl() {
-  return "http://localhost:8000/api/"//process.env.NEXT_PUBLIC_API_URL;
+  return "http://localhost:8000/api"//process.env.NEXT_PUBLIC_API_URL;
 }
 
 const api = axios.create(
   {
-    baseURL: "http://localhost:8000/api/"//process.env.NEXT_PUBLIC_API_URL,
+    baseURL: "http://localhost:8000/api"//process.env.NEXT_PUBLIC_API_URL,
   },
   config.headers
 );

@@ -34,7 +34,7 @@ export default function CardBarber(props) {
           </CardContent>
         </CardActionArea>
       </Card>
-      <ModalHour showModal={modalOpen} closeModal={handleCloseModal} />
+      <ModalHour showModal={modalOpen} closeModal={handleCloseModal} barberId={props.barberId}/>
     </div>
 
   );

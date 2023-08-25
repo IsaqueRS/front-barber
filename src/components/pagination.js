@@ -7,7 +7,7 @@ import { useState } from 'react';
 import ReactPaginate from 'react-paginate'
 
 
-function PaginationComp({ currentDates }) {
+function PaginationComp({ currentDates, onDayClick }) {
 
   const [pageNumbers, setPageNumbers] = useState(0); 
   const daysPerPage = 5
@@ -36,7 +36,7 @@ function PaginationComp({ currentDates }) {
 
   const displayDays = dates.slice(pagesVisited, pagesVisited + daysPerPage).map((day) => {
     return (
-      <li key={day.date} onClick={() => console.log('Clicked on', day.date)}>
+      <li key={day.date} onClick={() => onDayClick(day.date)}>
             <button className='btn-days'>{day.date}</button>
       </li>
     )

@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import './App.css';
 import Login from './pages/Login/Login';
 import Home from './pages/Home/Home';
+import Register from './pages/Register/Register';
 import UserClientScreen from './pages/userClietPage';
+import GlobalStyle from '../src/globalStyle'
+import { theme } from './theme'
+import { ThemeProvider } from 'styled-components';
+import Cadaster from './pages/cadaster/cadaster';
 
 const users = {
   "users": [
@@ -62,32 +66,23 @@ const users = {
 
 
 function App() {
-  const containerStyles = {
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    height: '100vh',
-    background: '#282c34',
-    color: '#fff',
-  };
-
-  const labelStyles = {
-    marginBottom: '10px',
-    fontWeight: 'bold'
-  };
 
   return (
+    <ThemeProvider theme={theme}>
     <Router>
       <Routes>
         <Route index path="/" element={<Login />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/cadaster" element={<Cadaster />} />
         {users.users.map(user => (
            <Route key={user.id} path={`/${user.id}`} element={<UserClientScreen user={user} />} >
            </Route>
         ))}
       </Routes>
     </Router>
+    <GlobalStyle/>
+    </ThemeProvider>
   );
 }
 

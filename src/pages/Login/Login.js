@@ -1,6 +1,7 @@
 import './Login.css';
 import jwt_decode from 'jwt-decode'
-import { React, useEffect, useState } from 'react';
+import { React, useEffect, useState } from 'react'; 
+import * as Components from '../Register/components_register'
 
 function Login() {
   const [ userToken, setUserToken ] = useState({})
@@ -27,8 +28,8 @@ function Login() {
 
   return (
     <div className="login-container">
-      <h1>Bem-Vindo</h1>
-      <p>Na Hora de Agendar Seu Corte</p>
+      <Components.Title>Bem-Vindo</Components.Title>
+      <Components.Paragraph>Na Hora de Agendar Seu Corte</Components.Paragraph>
       <div id='signInDiv'></div>
     </div>
   );

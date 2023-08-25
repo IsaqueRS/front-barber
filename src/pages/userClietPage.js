@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import ButtonAppBar from '../components/appbar';
 import CardBarber from '../components/cardEmployees';
 import { Grid } from 'semantic-ui-react';
+import * as Components from './Register/components_register'
 
 function UserClientScreen({ user }) {
 
@@ -11,10 +12,10 @@ function UserClientScreen({ user }) {
     <div>
       <ButtonAppBar user={user}/>
       <div style={{ backgroundColor: '#fffff', color: '#000000', padding: '20px', fontFamily: 'sans-serif' }}>
-        <h2>é a barbearia do: {user.nome}!</h2>
+        <Components.Title>é a barbearia do: {user.nome}!</Components.Title>
         <p>Bem-vindo(a) à barbearia {user.nome_barbearia}.</p>
         <Grid>
-          <CardBarber image="image" name="Carl Johnson" description="oh nigga get out of the way - cj"></CardBarber>
+          <CardBarber barberId={user.id} image="image" name="Carl Johnson" description="oh nigga get out of the way - cj"></CardBarber>
         </Grid>
       </div>
     </div>

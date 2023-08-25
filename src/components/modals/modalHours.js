@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import axios from 'axios'
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Pagination from 'react-bootstrap/Pagination'
@@ -8,68 +9,31 @@ import { ModalBody } from 'react-bootstrap';
 import PaginationComp from '../pagination' 
 import { addDays, format, getDay } from 'date-fns';
 import { ptBR } from 'date-fns/locale'
+import api from '../../services/api'
 
 
-function ModalHour({ showModal, closeModal }) {
+function ModalHour({ showModal, closeModal, barberId }) {
   const [activeButton, setActiveButton] = useState(null);
   const [currentPage, setCurrentPage] = useState(0);
   const [startDate, setStartDate] = useState(new Date());
   const datesPerPage = 5;
   const handleButtonClick = (buttonId) => {
+    console.log({barberId})
     setActiveButton(buttonId);
   };
-  const events = [
-    {
-      "id": 1,
-      "title": "Event 1",
-      "time": "07:00"
-    },
-    {
-      "id": 2,
-      "title": "Event 2",
-      "time": "08:00"
-    },
-    {
-      "id": 3,
-      "title": "Event 3",
-      "time": "09:00"
-    },
-    {
-      "id": 4,
-      "title": "Event 4",
-      "time": "10:00"
-    },
-    {
-      "id": 5,
-      "title": "Event 5",
-      "time": "11:00"
-    },
-    {
-      "id": 6,
-      "title": "Event 1",
-      "time": "07:00"
-    },
-    {
-      "id": 7,
-      "title": "Event 2",
-      "time": "08:00"
-    },
-    {
-      "id": 8,
-      "title": "Event 3",
-      "time": "09:00"
-    },
-    {
-      "id": 9,
-      "title": "Event 4",
-      "time": "10:00"
-    },
-    {
-      "id": 10,
-      "title": "Event 5",
-      "time": "11:00"
+  const [events, setEvents] = useState([])
+
+
+  const handleDayClick = async (date) => {
+    try {
+      const response = await axios.get(`/sua-rota-da-api/${date}`); // Altere a rota da API de acordo com o seu backend
+      const eventsData = response.data; // Supondo que a API retorna os eventos para um determinado dia
+      setEvents(eventsData);
+      setCurrentPage(0); // Reinicia a página ao selecionar um novo dia
+    } catch (error) {
+      console.error(`Erro ao buscar dados para ${date}:`, error);
     }
-  ]
+  };
 
   const getNext15Days = () => {
     const dates = [];
@@ -108,7 +72,7 @@ function ModalHour({ showModal, closeModal }) {
         </Modal.Header>
         <ModalBody>
         <div className="daysbox">
-          <PaginationComp currentDates={currentDates} postsPerDay={datesPerPage}/>
+          <PaginationComp currentDates={currentDates} postsPerDay={datesPerPage} onDayClick={handleDayClick}/>
         </div>
         </ModalBody>
         <Modal.Body>
