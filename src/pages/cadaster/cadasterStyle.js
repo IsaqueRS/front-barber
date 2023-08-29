@@ -27,22 +27,31 @@ export const divLeft = styled.div`
 export const divRight = styled.div`
   min-height: 100%;
   width: 72%;
+  display: flex;
+  flex-direction: column;
   padding: 50px 25px 25px 25px;
   background-color: #fff;
+  gap: 20px;
+`;
+
+export const inputsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 15px;
+`;
+
+export const inputsContainerFirst = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr;
+  gap: 15px;
 `;
 
 export const divRightContainerTime = styled.div`
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-`;
-
-export const BottomContainer = styled.div`
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-end;
-    margin-top: auto;
-    padding-top: 20px;
 `;
 
 export const divSvg = styled.div`
@@ -53,8 +62,19 @@ export const Input = styled.input`
 background-color: #eee;
 border: none;
 padding: 12px 15px;
-margin: 8px 0;
 width: 100%;
+`;
+
+export const ButtonDefault = styled.button`
+  background-color: #eee;
+  border: none;
+  padding: 12px 15px;
+  height: 55px;
+  width: 105px;
+  transition: transform 80ms ease-in;
+  &:active{
+      transform: scale(0.95);
+  }
 `;
 
 export const Button = styled.button`
@@ -97,11 +117,11 @@ export const subTitle = styled.p`
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0.5px;
-  margin: 20px 0px 20px
+  margin: 20px 0px 0px
 `;
 
 export const Paragraph = styled.p`
-font-size: 14px;
+  font-size: 14px;
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0.5px;

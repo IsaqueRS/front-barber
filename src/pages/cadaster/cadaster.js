@@ -7,6 +7,7 @@ import Select from 'react-select'
 
 function Cadaster() {
 
+    const [displayedCount, setDisplayedCount] = useState(0);
     const [ phone, setPhone ] = useState('')
     const [ street, setStreet ] = useState('')
     const [ addresNumber, setAddresNumber ] = useState('')
@@ -118,6 +119,31 @@ function Cadaster() {
         setPhone(formattedPhone);
     };
 
+    const PlusDaysHoursContent = (
+      <Components.divRightContainerTime>
+      <Select
+          isMulti
+          name="colors"
+          options={options}
+          className="basic-multi-select"
+          classNamePrefix="select"
+          styles={customStyles}
+          placeholder="Selecione..."
+      />
+        <Components.Paragraph style={{ padding: '0' }}>Início: </Components.Paragraph>
+        <Components.TimePicker type="time"/>
+        <Components.Paragraph style={{ padding: '0' }}>Fim: </Components.Paragraph>
+        <Components.TimePicker type="time"/>
+        <Components.Paragraph style={{ padding: '0' }}>Intervalo (opcional):</Components.Paragraph>
+        <Components.TimePicker type="time"/>
+        <Components.Paragraph style={{ padding: '0' }}></Components.Paragraph>
+        <Components.TimePicker type="time"/>
+        </Components.divRightContainerTime>
+  );
+
+    const continueClick = () => {
+      console.log('continue', displayedCount)
+    };
 
     return (
         <Components.Container>
@@ -134,22 +160,26 @@ function Cadaster() {
                 <Components.subTitle>
                     Dados da Barbearia
                 </Components.subTitle>
-                <Components.Input placeholder="Nome da Barbearia"></Components.Input>
-                <Components.Input  
-                    onChange={handlePhoneChange}
-                    value={phone}
-                    keyboardType="numeric" 
-                    placeholder="Telefone da Barbearia">
-                </Components.Input>
+                <Components.inputsContainerFirst>
+                  <Components.Input placeholder="Nome da Barbearia"></Components.Input>
+                  <Components.Input  
+                      onChange={handlePhoneChange}
+                      value={phone}
+                      keyboardType="numeric" 
+                      placeholder="Telefone da Barbearia">
+                  </Components.Input>
+                </Components.inputsContainerFirst>
                 <Components.subTitle>
                     Endereço da Barbearia
                 </Components.subTitle>
-                <Components.Input style={{ width: '49%' }} placeholder="cep" onBlur={FetchCep}></Components.Input>
-                <Components.Input style={{ width: '50%', marginLeft: '13px' }} placeholder="Rua" value={street}></Components.Input>
-                <Components.Input style={{ width: '49%' }} placeholder="Número"></Components.Input>
-                <Components.Input style={{ width: '50%', marginLeft: '13px' }} placeholder="Bairro" value={neighborhood}></Components.Input>
-                <Components.Input style={{ width: '49%' }} placeholder="Cidade" value={city}></Components.Input>
-                <Components.Input style={{ width: '50%', marginLeft: '13px' }} placeholder="Estado" value={state}></Components.Input>
+                <Components.inputsContainer>
+                  <Components.Input placeholder="cep" onBlur={FetchCep}></Components.Input>
+                  <Components.Input placeholder="Rua" value={street}></Components.Input>
+                  <Components.Input placeholder="Número"></Components.Input>
+                  <Components.Input placeholder="Bairro" value={neighborhood}></Components.Input>
+                  <Components.Input placeholder="Cidade" value={city}></Components.Input>
+                  <Components.Input placeholder="Estado" value={state}></Components.Input>
+                </Components.inputsContainer>
                 <Components.subTitle>
                     Horários de Funcionamento
                 </Components.subTitle>
@@ -171,8 +201,13 @@ function Cadaster() {
                     <Components.TimePicker type="time"/>
                     <Components.Paragraph style={{ padding: '0' }}></Components.Paragraph>
                     <Components.TimePicker type="time"/>
+                    <Components.ButtonDefault onClick={() => setDisplayedCount(displayedCount+1)}>
+                      +
+                    </Components.ButtonDefault>
+                    {displayedCount > 0 && PlusDaysHoursContent}
+                    {displayedCount > 1 && PlusDaysHoursContent}
                 </Components.divRightContainerTime>
-                <Components.Button>Continuar</Components.Button>
+                <Components.Button onClick={continueClick}>Continuar</Components.Button>
             </Components.divRight>
         </Components.Container>
 )
