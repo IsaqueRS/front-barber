@@ -37,6 +37,14 @@ export const divRightContainerTime = styled.div`
   gap: 10px;
 `;
 
+export const BottomContainer = styled.div`
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    margin-top: auto;
+    padding-top: 20px;
+`;
+
 export const divSvg = styled.div`
   margin: 135px 0;
 `;
@@ -47,6 +55,27 @@ border: none;
 padding: 12px 15px;
 margin: 8px 0;
 width: 100%;
+`;
+
+export const Button = styled.button`
+   border-radius: 20px;
+   border: 1px solid #003262;
+   background-color: #003262;
+   color: #ffffff;
+   font-size: 12px;
+   font-weight: bold;
+   padding: 12px 45px;
+   letter-spacing: 1px;
+   align-self: flex-end;
+   margin-top: auto;
+   text-transform: uppercase;
+   transition: transform 80ms ease-in;
+   &:active{
+       transform: scale(0.95);
+   }
+   &:focus {
+       outline: none;
+   }
 `;
 
 export const TimePicker = styled.input`

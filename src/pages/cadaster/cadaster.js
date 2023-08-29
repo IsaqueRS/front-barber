@@ -172,6 +172,7 @@ function Cadaster() {
                     <Components.Paragraph style={{ padding: '0' }}></Components.Paragraph>
                     <Components.TimePicker type="time"/>
                 </Components.divRightContainerTime>
+                <Components.Button>Continuar</Components.Button>
             </Components.divRight>
         </Components.Container>
 )
