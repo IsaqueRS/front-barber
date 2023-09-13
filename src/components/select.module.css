@@ -1,0 +1,89 @@
+.container {
+    background-color: #eee;
+    border: none;
+    padding: 12px 15px;
+    position: relative;
+    width: 20em;
+    display: flex;
+    align-items: center;
+    gap: .5em;
+    padding: .5em;
+    border-radius: .25em;
+  }
+  
+  .value {
+    flex-grow: 1;
+    display: flex;
+    gap: .5em;
+    flex-wrap: wrap;
+  }
+  
+  .clear-btn {
+    background: none;
+    color: #777;
+    border: none;
+    outline: none;
+    padding: 0;
+    font-size: 1.25em;
+  }
+  
+  .divider {
+    background-color: #777;
+    align-self: stretch;
+    width: .05em;
+  }
+  
+  .caret {
+    translate: 0 25%;
+    border: .25em solid transparent;
+    border-top-color: #777;
+  }
+  
+  .options {
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: none;
+    max-height: 10em;
+    overflow-y: auto;
+    border: .05em solid #777;
+    border-radius: .25em;
+    width: 100%;
+    left: 0;
+    top: calc(100% + .25em);
+    background-color: white;
+    z-index: 100;
+  }
+  
+  .options.show {
+    display: block;
+  }
+  
+  .option {
+    padding: .25em .5em;
+  }
+  
+  .option.selected {
+    color: white;
+    background-color: #003262;
+  }
+  
+  .option.highlighted {
+    background-color: #2072AF;
+    color: white
+  }
+  
+  .option-badge {
+    display: flex;
+    align-items: center;
+    border: none;
+    border-radius: .25em;
+    padding: .15em .25em;
+    gap: .25em;
+    background-color: #003262;
+    color: #eee;
+    outline: none;
+  }
+
+

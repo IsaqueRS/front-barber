@@ -8,6 +8,7 @@ import GlobalStyle from '../src/globalStyle'
 import { theme } from './theme'
 import { ThemeProvider } from 'styled-components';
 import Cadaster from './pages/cadaster/cadaster';
+import CadasterBarber from './pages/cadasterBarber/cadasterBarber';
 
 const users = {
   "users": [
@@ -75,6 +76,7 @@ function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/cadaster" element={<Cadaster />} />
+        <Route path="/cadaster-barber" element={<CadasterBarber />} />
         {users.users.map(user => (
            <Route key={user.id} path={`/${user.id}`} element={<UserClientScreen user={user} />} >
            </Route>

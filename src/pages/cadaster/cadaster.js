@@ -1,11 +1,25 @@
 import { React } from "react";
 import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 import * as Components from './cadasterStyle'
 import { useState } from "react";
 import testsvg from "../../static/svgCadaster.svg"
 import Select from 'react-select'
+import { SelectDay } from "../../components/multiSelect";
+
+const weekDays = [
+  { value: 'Segunda', label: 'Segunda' },
+  { value: 'Terça', label: 'Terça' },
+  { value: 'Quarta', label: 'Quarta' },
+  { value: 'Quinta', label: 'Quinta' },
+  { value: 'Sexta', label: 'Sexta' },
+]
+const optionsForValue2 = [{ value: 'Sábado', label: 'Sábado' }]
+const optionsForValue3 = [{ value: 'Domingo', label: 'Domingo' }]
 
 function Cadaster() {
+
+    const navigate = useNavigate();
 
     const [displayedCount, setDisplayedCount] = useState(0);
     const [ phone, setPhone ] = useState('')
@@ -14,6 +28,11 @@ function Cadaster() {
     const [ neighborhood, setNeighborhood ] = useState('')
     const [ city, setCity ] = useState('')
     const [ state, setState ] = useState('')
+    const [selectedDays, setSelectedDays] = useState(null);
+
+    const [value1, setValue1] = useState([])
+    const [value2, setValue2] = useState(optionsForValue2)
+    const [value3, setValue3] = useState(optionsForValue3)
 
     const customStyles = {
         container: (provided, state) => ({
@@ -71,17 +90,6 @@ function Cadaster() {
           }),
       };
 
-    const options = [
-        { value: 'segunda', label: 'segunda' },
-        { value: 'terça', label: 'terça' },
-        { value: 'Quarta', label: 'Quarta' },
-        { value: 'Quinta', label: 'Quinta' },
-        { value: 'Sexta', label: 'Sexta' },
-        { value: 'Sábado', label: 'Sábado' },
-        { value: 'Domingo', label: 'Domingo' }
-
-      ]
-
     const FetchCep = (e) => {
         const cep = e.target.value.replace(/\D/g, '')
         console.log(cep)
@@ -119,17 +127,14 @@ function Cadaster() {
         setPhone(formattedPhone);
     };
 
-    const PlusDaysHoursContent = (
+    const PlusDaysHoursContent = (value, setValue, daysOptions) => (
       <Components.divRightContainerTime>
-      <Select
-          isMulti
-          name="colors"
-          options={options}
-          className="basic-multi-select"
-          classNamePrefix="select"
-          styles={customStyles}
-          placeholder="Selecione..."
-      />
+      <SelectDay
+                    multiple                    
+                    options={daysOptions}
+                    value={value}
+                    onChange={o => setValue(o)}
+                    />
         <Components.Paragraph style={{ padding: '0' }}>Início: </Components.Paragraph>
         <Components.TimePicker type="time"/>
         <Components.Paragraph style={{ padding: '0' }}>Fim: </Components.Paragraph>
@@ -142,7 +147,8 @@ function Cadaster() {
   );
 
     const continueClick = () => {
-      console.log('continue', displayedCount)
+      console.log('continue');
+      navigate('/cadaster-barber');
     };
 
     return (
@@ -165,7 +171,6 @@ function Cadaster() {
                   <Components.Input  
                       onChange={handlePhoneChange}
                       value={phone}
-                      keyboardType="numeric" 
                       placeholder="Telefone da Barbearia">
                   </Components.Input>
                 </Components.inputsContainerFirst>
@@ -184,15 +189,11 @@ function Cadaster() {
                     Horários de Funcionamento
                 </Components.subTitle>
                 <Components.divRightContainerTime>
-                  <Select
-                      isMulti
-                      name="colors"
-                      options={options}
-                      className="basic-multi-select"
-                      classNamePrefix="select"
-                      styles={customStyles}
-                      placeholder="Selecione..."
-                  />
+                    <SelectDay
+                    multiple
+                    options={weekDays}
+                    value={weekDays}
+                    />
                     <Components.Paragraph style={{ padding: '0' }}>Início: </Components.Paragraph>
                     <Components.TimePicker type="time"/>
                     <Components.Paragraph style={{ padding: '0' }}>Fim: </Components.Paragraph>
@@ -204,9 +205,9 @@ function Cadaster() {
                     <Components.ButtonDefault onClick={() => setDisplayedCount(displayedCount+1)}>
                       +
                     </Components.ButtonDefault>
-                    {displayedCount > 0 && PlusDaysHoursContent}
-                    {displayedCount > 1 && PlusDaysHoursContent}
                 </Components.divRightContainerTime>
+                {displayedCount > 0 && PlusDaysHoursContent(value2, setValue2, optionsForValue2)}
+                {displayedCount > 1 && PlusDaysHoursContent(value3, setValue3, optionsForValue3)}
                 <Components.Button onClick={continueClick}>Continuar</Components.Button>
             </Components.divRight>
         </Components.Container>
