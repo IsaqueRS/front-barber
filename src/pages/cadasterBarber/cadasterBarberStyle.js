@@ -35,6 +35,75 @@ export const divRight = styled.div`
   gap: 20px;
 `;
 
+export const cardsContainer = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 20px;
+`;
+
+export const cardDiv = styled.div`
+  position: relative;
+`;
+
+export const photo = styled.img`
+  position: absolute;
+  border-radius: 50%;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+`;
+
+export const changePicDiv = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  background-color: rgba( 0, 0, 0, 0.6);
+  opacity: 0%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  cursor: pointer;
+  transition: opacity 90ms ease-in;
+  &:hover{
+    opacity: 100%;
+  }
+`;
+
+export const cardImage = styled.div`
+  position: absolute;
+  border-radius: 50%;
+  object-fit: cover;
+  left: 40%;
+  transform: translatex(-50%);
+  width: 154px;
+  height: 154px;
+  cursor: pointer;
+  z-index: 2;
+`;
+
+export const barberDiv = styled.div`
+  position: relative;
+  background-color: #ffffff;
+  border: none; 
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  border-radius: 5px;
+  margin: 125px 0 0 0;
+  width: 250px;
+  height: 270px;
+`;
+
+export const cardBarberInputs = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 35px 10px;
+`;
+
 export const inputsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -124,6 +193,7 @@ export const subTitle = styled.p`
 
 export const Paragraph = styled.p`
   font-size: 14px;
+  color: white;
   font-weight: 500;
   line-height: 20px;
   letter-spacing: 0.5px;
