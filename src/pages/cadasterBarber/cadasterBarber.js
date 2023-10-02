@@ -4,12 +4,15 @@ import axios from "axios";
 import { useNavigate } from 'react-router-dom';
 import barberSvg from "../../static/barber.svg"
 import userImage from "../../static/user.png"
+import cardCadasterBarber from '../../components/cardCadasterBarber';
 
 export default function CadasterBarber() {
 
     const navigate = useNavigate();
     const inputref = useRef(null);
     const [image, setImage] = useState("");
+    const inputRefs = useRef([]);
+    const [barbeiros, setBarbeiros] = useState([]);
 
     const continueClick = () => {
         navigate('/home');
@@ -25,117 +28,37 @@ export default function CadasterBarber() {
         setImage(event.target.files[0])
     }
 
+    const handleInputChange = (index, key, value) => {
+        const newBarbeiro = { ...barbeiros[index], [key]: value };
+        const updatedBarbeiros = [...barbeiros];
+        updatedBarbeiros[index] = newBarbeiro;
+        setBarbeiros(updatedBarbeiros);
+    }
 
   return (
-        <Components.Container>
-            <Components.divLeft>
-                <Components.Title>
-                    Cadastre os Barbeiros
-                </Components.Title>
-                <Components.divSvg>
-                  <img src={barberSvg}/>
-                </Components.divSvg> 
-                
-            </Components.divLeft>
-            <Components.divRight>
-                <Components.cardsContainer>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.changePicDiv onClick={handleClickImage}>
-                                <Components.Paragraph>
-                                    Carregar Foto
-                                </Components.Paragraph>
-                            </Components.changePicDiv>
-                            {image ? <Components.photo src={URL.createObjectURL(image)}></Components.photo> : <Components.photo src={userImage}></Components.photo>}                            
-                            <input type="file" ref={inputref} onChange={handleImageChange} style={{display: "none"}}/>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>                            
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                    <Components.cardDiv>
-                        <Components.cardImage>
-                            <Components.photo src={userImage}></Components.photo>
-                        </Components.cardImage>
-                        <Components.barberDiv>
-                            <Components.cardBarberInputs>
-                                <Components.Input placeholder="Nome"></Components.Input>
-                                <Components.Input placeholder="Email" type="email"></Components.Input>
-                            </Components.cardBarberInputs>
-                        </Components.barberDiv>
-                    </Components.cardDiv>
-                </Components.cardsContainer>
+    <Components.Container>
+        <Components.divLeft>
+            <Components.Title>
+                Cadastre os Barbeiros
+            </Components.Title>
+            <Components.divSvg>
+                <img src={barberSvg} alt="Barber" />
+            </Components.divSvg>
+        </Components.divLeft>
+        <Components.divRight>
+            <Components.cardsContainer>
+                {barbeiros.map((barbeiro, index) => (
+                    <cardCadasterBarber
+                        key={index}
+                        barbeiro={barbeiro}
+                        index={index}
+                        onImageChange={handleImageChange}
+                        onInputChange={handleInputChange}
+                    />
+                ))}
+            </Components.cardsContainer>
             <Components.Button onClick={continueClick}>Continuar</Components.Button>
-            </Components.divRight>
-        </Components.Container>
+        </Components.divRight>
+    </Components.Container>
 )
 }
